@@ -21,7 +21,6 @@
             border: 1px solid rgb(0, 0, 0);
             border-collapse: collapse;
             font-family: 'Roboto Mono', monospace;
-            font-family: 'Roboto Mono', monospace;
 
         }
         td{
@@ -65,7 +64,7 @@
 
         .Low { color: rgb(0, 183, 0); }
         .High { color: rgb(255, 0, 0); }
-        .Medium { color: rgb(250, 233, 0); }
+        .Medium { color: rgb(240, 144, 26); }
 
         nav {
 
@@ -118,62 +117,67 @@
     </nav>
     <div ng-controller="Delctrl">
         <div style="align-items: center;text-align: center;">
-            <label>Enter your name: </label><input ng-model="fname" type="text" placeholder="Enter name"><br /><br />
+            <label>Enter your name: </label><input ng-model="fid" type="text" placeholder="Enter name"><br /><br />
         </div>
-        <h1>Welcome {{ fname | strUpp }}</h1><br /><br />
+        <h1>Welcome {{ fid | strUpp }}</h1><br /><br />
        
        
         <div id="tablediv">
-            <label style="margin-left: 30px;">Rows to Display:</label><input type="number" step="1" min="0" max="6" ng-model="rowlimit"/><br><br>
+            <label style="margin-left: 30px;">Rows to Display:</label><input type="number" step="1" min="0" max="3" ng-model="rowlimit"/><br><br>
             <div style="width:fit-content; height: 150px; padding: 10px;">
                 <div style="padding:20px; width: fit-content;float: left;"> 
                 
-                    <label>Search by Name: </label> <input ng-model="searchtxt.name" type="text" placeholder="Enter Name"  ng-keypress="turnGreen()"><br /><br />
+                    <label>Search by Sender: </label> <input ng-model="searchtxt.sender" type="text" placeholder="Enter Sender's Name" ><br /><br />
              
                
-                    <label>Search by Price: </label><input ng-model="searchtxt.price" type="text" placeholder="Enter Price"><br /><br />
+                    <label>Search by Distance: </label><input ng-model="searchtxt.distance" type="text" placeholder="Enter Distance"><br /><br />
                 
                 
             </div>
             <div style="padding:20px; margin-top: 3px; width: fit-content;float: right;margin-left: 100px;">
                 <label>
-                    Search by Description: 
+                    Search by Instructions: 
                 </label>
-                   <input ng-model="searchtxt.description" type="text" placeholder="Enter Description"><br /><br />
+                   <input ng-model="searchtxt.intructions" type="text" placeholder="Enter Instructions"><br /><br />
                 
                <label>
-                Search by Spice Level: 
+                Search by Content: 
                </label>
-                    <input ng-model="searchtxt.spice" type="text" placeholder="Enter Spice Level"><br /><br />
+                    <input ng-model="searchtxt.content" type="text" placeholder="Enter Content"><br /><br />
                 
                 
             </div>
             </div>
             
             <div >
-                <h2 style="margin-top: 0px;margin-left: 47%;">Menu </h2>
+                <h2 style="margin-top: 0px;margin-left: 39%;">Delivery Schedule </h2>
+                <center>
                 <table>
                     <tr>
-                        <th >Name <i class="fa fa-sort" ng-click="orderByMe('name')"></i></th>
-                        <th>Price <i class="fa fa-sort" ng-click="orderByMe('price')"></i></th>
-                        <th>Description</th>
-                        <th>Spice Level</th>
-                        <th>Calories <i class="fa fa-sort" ng-click="orderByMe('calories')"></i></th>
+                        <th >ID <i class="fa fa-sort" ng-click="orderByMe('id')"></i></th>
+                        <th>Sender <i class="fa fa-sort" ng-click="orderByMe('sender')"></i></th>
+                        <th>Reciever <i class="fa fa-sort" ng-click="orderByMe('reciever')"></i></th>
+                        <th>Distance <i class="fa fa-sort" ng-click="orderByMe('distance')"></i></th>
+                        <th>Content</th>
+                        <th>Instructions</th>
+                        
         
                     </tr>
                     
                         <tr ng-repeat="fd1 in fd|limitTo:rowlimit|filter:searchtxt|orderBy:myOrderBy|filter:changeColorFilter">
         
-                            <td ng-style="customStyle.style">{{fd1.name}}</td>
-                            <td>&#8377;{{fd1.price|number:2}}</td>
-                            <td>{{fd1.description|lowercase}}</td>
-                            <td class="{{fd1.class}}" style="font-weight: bold;">{{fd1.spice|uppercase}}</td>
-                            <td>{{fd1.calories}}</td>
+                            <td >{{fd1.id}}</td>
+                            <td>{{fd1.sender}}</td>
+                            <td>{{fd1.reciever}}</td>
+                            <td class="{{fd1.class}}" style="font-weight: bold;">{{fd1.distance}} kms</td>
+                            <td>{{fd1.content}}</td>
+                            <td>{{fd1.intructions}}</td>
                             
                 
                         </tr>
                 
                 </table>
+                </center>
             </div>
            
         </div>
