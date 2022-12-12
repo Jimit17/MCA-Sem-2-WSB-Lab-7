@@ -8,33 +8,27 @@ angular.module("Del",[])
 
 .controller("Delctrl",function($scope)
 {
-    var fooditems=[
-        {name:'Vegetable Manchurian',price:250, description:'Vegetable Manchurian in a delicious gravy.', spice:'Spicy', calories:'250'},
-        {name:'French Fries',price:130, description:'Fried Potatoes served with Mayonaisse on the side.', spice:'Mildly Spicy', calories:'350'},
-        {name:'Baked Potatoes',price:320, description:'Potatoes baked with cheesy goodness and served with Barbeque Sauce.', spice:'Not Spicy', calories:'300'},
-        {name:'French Toast',price:150, description:'Thick slices made from our homemade sourdough bread.', spice:'Not Spicy', calories:'120'},
-        {name:'Pasta in Alfredo Sauce',price:450, description:'Pasta served with a delicious Alfredo Sauce.', spice:'Mildly Spicy', calories:'220'},
-        {name:'Vegetarian Ramen',price:450, description:'Ramen Noodles in a delicious soup.', spice:'Spicy', calories:'250'},
-        {name:'Chocolate Cake',price:230, description:'Delicious chocolate cake topped with chocolate chips.', spice:'Not Spicy', calories:'300'}
+    var delivery_schedule=[
+        {id:1,sender:'Lalitha', reciever :"Lalitha's Mom", distance:"14", content: 'Household Items',intructions:'Caution: Really Hot'},
+        {id:2,sender:'Lolitha', reciever :"Lolitha's Sister", distance:"46",content: 'Other', intructions:'Fragile: Handle with care'},
+        {id:3,sender:'Lilitha', reciever :"Lilitha's Dad", distance:'27',content: 'Medicines' ,intructions:'Do not expose to sun light'}
     ];
     
-    $scope.fd=fooditems;
-    $scope.rowlimit=6;
+    $scope.fd=delivery_schedule;
+    $scope.rowlimit=3;
     $scope.orderByMe = function(x) {
         $scope.myOrderBy = x;
       }
       $scope.customStyle = {};
-      $scope.turnGreen = function (){
-          $scope.customStyle.style = {"color":"green"};
-      }
-      $scope.fname = " ";  
+      
+      $scope.fid = " ";  
 
       $scope.changeColorFilter = function (item){
        
-         if (item.spice == 'Spicy') {
+         if (item.distance > 40) {
            item.class = 'High';
        }
-       else if (item.spice == 'Not Spicy') {
+       else if (item.distance < 20) {
            item.class = 'Low';
        }
        else {
@@ -45,4 +39,3 @@ angular.module("Del",[])
         
       };
     });
-
